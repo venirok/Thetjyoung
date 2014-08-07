@@ -1,0 +1,42 @@
+﻿@model Thetjyoung.Web.Models.SummonerLookupViewModel
+@{
+    ViewBag.Title = "Summoner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Summoner</h2>
+
+@using (Html.BeginForm("Summoner", "League", FormMethod.Get))
+{
+    @Html.ValidationSummary()
+    <div class="row">
+        <div class="col-lg-3">
+            <p>@Html.LabelFor(x => x.SummonerId, "Summoner Name:", new { @class = "text-info" })</p>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom: 20px">
+        <div class="col-lg-3">
+            @Html.TextBoxFor(x => x.SummonerId, new { @class = "form-control input-sm" })
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-sm btn-primary" id="run" type="submit" onclick="this.disabled='disabled'; this.form.submit();">Find</button>
+        </div>
+    </div>
+    
+if(Model.Summoner != null) {
+     <table>
+         <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Id</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>@Model.Summoner.Name</td>
+                 <td>@Model.Summoner.SummonerId</td>
+             </tr>
+         </tbody>
+     </table>
+ }
+}
